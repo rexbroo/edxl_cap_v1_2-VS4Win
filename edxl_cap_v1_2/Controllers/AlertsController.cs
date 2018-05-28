@@ -19,6 +19,12 @@ namespace edxl_cap_v1_2.Controllers
             _context = context;
         }
 
+        // SELECT: Alert
+        public async Task<IActionResult> AlertSelect()
+        {
+            return View(await _context.EdxlCapMsg.ToListAsync());
+        }
+        
         // GET: Alerts
         public async Task<IActionResult> Index()
         {
@@ -67,7 +73,7 @@ namespace edxl_cap_v1_2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Identifier,Sender,Sent,Status,MsgType,Source,Scope,Restriction,Addresses,Code,Note,References,Incidents,Language,DataCategory_Id")] Alert alert)
+            [Bind("Id,Alert_Identifier,Sender,Sent,Status,MsgType,Source,Scope,Restriction,Addresses,Code,Note,References,Incidents,Language,DataCategory_Id")] Alert alert)
         {
             try
             {
@@ -116,7 +122,7 @@ namespace edxl_cap_v1_2.Controllers
             if (await TryUpdateModelAsync<Alert>(
                 alertToUpdate,
                 "",
-                a => a.Id, a => a.Identifier, a => a.Sender, a => a.Sent, a => a.Status, a => a.MsgType, a => a.Source, a => a.Scope, a => a.Addresses, a => a.Code, a => a.Note, a => a.References, a => a.Incidents, a => a.DataCategory_Id))
+                a => a.Id, a => a.Alert_Identifier, a => a.Sender, a => a.Sent, a => a.Status, a => a.MsgType, a => a.Source, a => a.Scope, a => a.Addresses, a => a.Code, a => a.Note, a => a.References, a => a.Incidents, a => a.DataCategory_Id))
             {
                 try
                 {
