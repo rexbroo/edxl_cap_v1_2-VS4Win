@@ -1,17 +1,47 @@
 ﻿@model IEnumerable<edxl_cap_v1_2.Models.Alert>
-@using edxl_cap_v1_2.Models
+@using static edxl_cap_v1_2.Models.Alert
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_CapCategoryLayout.cshtml";
 }
 
+@*@{
+    <form asp-controller="EdxlCapMsg" asp-action="Index" method="post" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="content-wrapper">
+                <span class="smallText">
+                    <label asp-for="Alert_Identifier" class="control-label"></label>
+                    <select asp-for="Id" class="form-control"
+                            asp-items="@(new SelectList(@ViewBag.ListofIdentifier,"Id", "Identifier"))"></select>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="content-wrapper">
+                <input id="Submit1" type="submit" value="submit" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="content-wrapper">
+                @if (ViewBag.SelectedValue != null)
+                {
+                    <text>Selected Alert_Identifier: </text> @ViewBag.SelectedValue;
+                }
+            </div>
+        </div>
+    </form>
+}*@
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
+
 <body>
+
     <h3>Alert</h3>
 
     <style>
@@ -34,7 +64,7 @@
                 </td>
                 <td>
                     &nbsp;&nbsp;element:<br>
-                    &nbsp;&nbsp;@Html.DisplayNameFor(model => model.Identifier)<text>*</text>
+                    &nbsp;&nbsp;@Html.DisplayNameFor(model => model.Alert_Identifier)<text>*</text>
                     @if (Element.Required == true)
                     {
                         <text>*</text>
@@ -50,15 +80,15 @@
                         @if (Element.DatatypeSize < 49)
                         {
                             <span class="smallText">
-                                Enter @Html.DisplayNameFor(model => model.Identifier) value
-                                <input type="text" name="elementValue" value="@Html.DisplayFor(modelItem => item.Identifier)" size="25" />
+                                Enter @Html.DisplayNameFor(model => model.Id) value
+                                <input type="text" name="elementValue" value="@Html.DisplayFor(modelItem => item.Id)" size="25" />
                             </span>
                         }
                         else if (Element.DatatypeSize > 49)
                         {
                             <span class="smallText">
-                                Enter @Html.DisplayNameFor(model => model.Identifier) value
-                                <textarea name="elementValue" rows="4" value="@Html.DisplayFor(modelItem => item.Identifier)" cols="25">
+                                Enter @Html.DisplayNameFor(model => model.Id) value
+                                <textarea name="elementValue" rows="4" value="@Html.DisplayFor(modelItem => item.Id)" cols="25">
                                 </textarea>
                             </span>
                         }
@@ -78,7 +108,67 @@
                     <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
                         <input type="hidden"
                                name="Identifier"
-                               value="@Html.DisplayFor(modelItem => item.Identifier)">
+                               value="@Html.DisplayFor(modelItem => item.Id)">
+                        <input type="submit"
+                               value="add element">
+                    </form>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="start">start
+                </td>
+                <td>
+                    &nbsp;&nbsp;element:<br>
+                    &nbsp;&nbsp;@Html.DisplayNameFor(model => model.Alert_Identifier)<text>*</text>
+                    @if (Element.Required == true)
+                    {
+                        <text>*</text>
+                    }
+                    else
+                    {
+                        <text>&nbsp;&nbsp;</text>
+                    }
+                </td>
+                <td>
+                    <div id="elementInput">
+
+                        @if (Element.DatatypeSize < 49)
+                        {
+                            <span class="smallText">
+                                Enter @Html.DisplayNameFor(model => model.Alert_Identifier) value
+                                <input type="text" name="elementValue" value="@Html.DisplayFor(modelItem => item.Alert_Identifier)" size="25" />
+                            </span>
+                        }
+                        else if (Element.DatatypeSize > 49)
+                        {
+                            <span class="smallText">
+                                Enter @Html.DisplayNameFor(model => model.Alert_Identifier) value
+                                <textarea name="elementValue" rows="4" value="@Html.DisplayFor(modelItem => item.Alert_Identifier)" cols="25">
+                                </textarea>
+                            </span>
+                        }
+                    </div>
+                </td>
+                <td>
+                    @if (Element.Repeatable == true)
+                    {
+                        <input type="radio" name="repeatElement" value="repeat" /><text>&nbsp; repeat</text>
+                    }
+                    else
+                    {
+                        <text>&nbsp;&nbsp;</text>
+                    }
+                </td>
+                <td>
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                        <input type="hidden"
+                               name="Identifier"
+                               value="@Html.DisplayFor(modelItem => item.Alert_Identifier)">
                         <input type="submit"
                                value="add element">
                     </form>
@@ -340,7 +430,7 @@
                         {
                             <span class="smallText">
                                 Enter @Html.DisplayNameFor(model => model.Source) value
-                                <input type="text" name="elementValue" value="@Html.DisplayFor(modelItem => item.Identifier)" size="25" />
+                                <input type="text" name="elementValue" value="@Html.DisplayFor(modelItem => item.Source)" size="25" />
                             </span>
                         }
                         else if (Element.DatatypeSize > 49)
@@ -518,7 +608,7 @@
                         else if (Element.DatatypeSize > 49)
                         {
                             <span class="smallText">
-                                Enter @Html.DisplayNameFor(model => model.Identifier) value
+                                Enter @Html.DisplayNameFor(model => model.Addresses) value
                                 <textarea name="elementValue" rows="3" value="@Html.DisplayFor(modelItem => item.Addresses)" cols="25">
                                 </textarea>
                             </span>
@@ -796,6 +886,6 @@
 
 </body>
 
-    <p style="font-size:x-small;padding:2px;text-align:center;color:#ffffff"> * = required &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat button is for multiple-use elements. </p>
+<p style="font-size:x-small;padding:2px;text-align:center;color:#ffffff"> * = required &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat button is for multiple-use elements. </p>
 
 </html>
