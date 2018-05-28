@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model edxl_cap_v1_2.Models.EdxlCapMsg
+@{
+    <form asp-controller="Home" asp-action="Demo" method="post" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="content-wrapper">
+                <span class="smallText">
+                    <label asp-for="Alert_Identifier" class="control-label"></label>
+                    <select asp-for="Alert_Identifier"
+                            class="form-control"
+                            asp-items="@(new SelectList(@ViewBag.ListofIdentifier, "Id", "Alert_Identifier"))">
+                    </select>
+                </span>
+            </div>
+        </div>
+        @*<div class="form-group">
+            <div class="row">
+                <div class="content-wrapper">
+                    <input id="Submit1" type="submit" value="submit" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="content-wrapper">
+                    @if (ViewBag.SelectedValue != null)
+                    {
+                        <text>Selected Alert_Identifier: </text> @ViewBag.SelectedValue;
+                    }
+                </div>
+            </div>
+        </div>*@
+    </form>
+}
