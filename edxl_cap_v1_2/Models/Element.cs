@@ -23,7 +23,7 @@ namespace edxl_cap_v1_2.Models
 
         public IEnumerator GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
