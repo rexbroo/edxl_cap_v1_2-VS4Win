@@ -1,10 +1,4 @@
-﻿@model edxl_cap_v1_2.Models.Alert
-@using edxl_cap_v1_2.Models
-
-@{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_CapCategoryLayout.cshtml";
-}
+﻿@model edxl_cap_v1_2.Models.EdxlCapMsg
 
 @{
     <form asp-controller="EdxlCapMsg" asp-action="Index" method="post" class="form-horizontal" role="form">
@@ -13,13 +7,13 @@
             <div class="content-wrapper">
                 <span class="smallText">
                     <label asp-for="Alert_Identifier" class="control-label"></label>
-                    <select asp-for="Id"
+                    <select asp-for="AlertIndex"
                             class="form-control"
-                            asp-items="@(new SelectList(@ViewBag.ListofIdentifier,"Id", "Identifier"))"></select>
+                            asp-items="@(new SelectList(@ViewBag.ListofIdentifier, "AlertIndex", "Alert_Identifier"))"></select>
                 </span>
             </div>
         </div>
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="content-wrapper">
                 <input id="Submit1" type="submit" value="submit" />
             </div>
@@ -31,11 +25,11 @@
                     <text>Selected Alert_Identifier: </text> @ViewBag.SelectedValue;
                 }
             </div>
-        </div>
+        </div>*@
     </form>
 }
 
-<html>
+@*<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -56,11 +50,11 @@
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <table id="elementTable" class="smallText">
+        <table id="elementTable" class="smallText">*@
 
             @*@foreach (var item in Model)
                 {*@
-            <tr>
+            @*@<tr>
                 <td>
                     <input type="checkbox" name="start">start
                 </td>
@@ -682,7 +676,7 @@
             </tr>
             @*}*@
 
-            <tr>
+            @*<tr>
                 <td></td>
                 <td></td>
                 <td>
@@ -705,7 +699,7 @@
     </form>
 </body>
 <p style="font-size:x-small;padding:2px;text-align:center;color:#ffffff"> * = required &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat button is for multiple-use elements. </p>
-</html>
+</html>*@
 
 
 
