@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace edxl_cap_v1_2.Models
 {
-    public class Alert : IEnumerable
+    public class Alert
     {
         [Key]
-        public int Id { get; set; }
+        public int AlertIndex { get; set; }
         public string Alert_Identifier { get; set; }
         public string Sender { get; set; }
         public DateTime Sent { get; set; }
@@ -28,7 +28,7 @@ namespace edxl_cap_v1_2.Models
 
         public ICollection<Element> Elements { get; set; }
 
-        public IEnumerator GetEnumerator()
+        public System.Collections.IEnumerator GetEnumerator()
         {
             return GetEnumerator();
         }
