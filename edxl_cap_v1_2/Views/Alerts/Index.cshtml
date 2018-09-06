@@ -65,66 +65,7 @@
                 <td>
                     &nbsp;&nbsp;element:<br>
                     &nbsp;&nbsp;@Html.DisplayNameFor(model => model.Alert_Identifier)<text>*</text>
-                    @if (Element.Required == true)
-                    {
-                        <text>*</text>
-                    }
-                    else
-                    {
-                        <text>&nbsp;&nbsp;</text>
-                    }
-                </td>
-                <td>
-                    <div id="elementInput">
 
-                        @if (Element.DatatypeSize < 49)
-                        {
-                            <span class="smallText">
-                                Enter @Html.DisplayNameFor(model => model.Id) value
-                                <input type="text" name="elementValue" value="@Html.DisplayFor(modelItem => item.Id)" size="25" />
-                            </span>
-                        }
-                        else if (Element.DatatypeSize > 49)
-                        {
-                            <span class="smallText">
-                                Enter @Html.DisplayNameFor(model => model.Id) value
-                                <textarea name="elementValue" rows="4" value="@Html.DisplayFor(modelItem => item.Id)" cols="25">
-                                </textarea>
-                            </span>
-                        }
-                    </div>
-                </td>
-                <td>
-                    @if (Element.Repeatable == true)
-                    {
-                        <input type="radio" name="repeatElement" value="repeat" /><text>&nbsp; repeat</text>
-                    }
-                    else
-                    {
-                        <text>&nbsp;&nbsp;</text>
-                    }
-                </td>
-                <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
-                        <input type="hidden"
-                               name="Identifier"
-                               value="@Html.DisplayFor(modelItem => item.Id)">
-                        <input type="submit"
-                               value="add element">
-                    </form>
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" name="start">start
-                </td>
-                <td>
-                    &nbsp;&nbsp;element:<br>
-                    &nbsp;&nbsp;@Html.DisplayNameFor(model => model.Alert_Identifier)<text>*</text>
                     @if (Element.Required == true)
                     {
                         <text>*</text>
@@ -165,7 +106,7 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="Identifier"
                                value="@Html.DisplayFor(modelItem => item.Alert_Identifier)">
@@ -174,8 +115,8 @@
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -225,17 +166,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -285,17 +226,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -340,17 +281,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -394,17 +335,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -454,17 +395,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -506,17 +447,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -566,17 +507,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -626,17 +567,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -686,17 +627,17 @@
                     }    <input type="radio" name="repeatElement" value="" /><text>&nbsp; repeat</text>
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -746,17 +687,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -806,17 +747,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -866,17 +807,17 @@
                     }
                 </td>
                 <td>
-                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.Id">
+                    <form asp-area="" asp-controller="alerts" asp-action="Details" method="post" asp-route-id="@item.AlertIndex">
                         <input type="hidden"
                                name="elementId"
-                               value="${element.id}">
+                               value="${element.ElementIndex}">
                         <input type="submit"
                                value="add element">
                     </form>
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.AlertIndex">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.AlertIndex">Delete</a>
                 </td>
             </tr>
 

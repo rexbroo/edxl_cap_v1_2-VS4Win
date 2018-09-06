@@ -22,20 +22,19 @@ namespace edxl_cap_v1_2.Migrations
 
             modelBuilder.Entity("edxl_cap_v1_2.Models.Alert", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AlertIndex")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Addresses");
+
+                    b.Property<string>("Alert_Identifier")
+                        .HasMaxLength(150);
 
                     b.Property<string>("Code");
 
                     b.Property<int>("DataCategory_Id");
 
-                    b.Property<string>("Identifier");
-
                     b.Property<string>("Incidents");
-
-                    b.Property<string>("Language");
 
                     b.Property<int>("MsgType");
 
@@ -55,7 +54,10 @@ namespace edxl_cap_v1_2.Migrations
 
                     b.Property<int>("Status");
 
-                    b.HasKey("Id");
+                    b.HasKey("AlertIndex");
+
+                    b.HasIndex("Alert_Identifier")
+                        .IsUnique();
 
                     b.ToTable("Alert");
                 });
@@ -64,6 +66,9 @@ namespace edxl_cap_v1_2.Migrations
                 {
                     b.Property<int>("AreaIndex")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Alert_Identifier")
+                        .HasMaxLength(150);
 
                     b.Property<string>("Altitude");
 
@@ -81,7 +86,20 @@ namespace edxl_cap_v1_2.Migrations
 
                     b.HasKey("AreaIndex");
 
+                    b.HasIndex("Alert_Identifier")
+                        .IsUnique();
+
                     b.ToTable("Area");
+                });
+
+            modelBuilder.Entity("edxl_cap_v1_2.Models.ContentViewModels.EdxlCapMessageViewModel", b =>
+                {
+                    b.Property<string>("Alert_Identifier")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Alert_Identifier");
+
+                    b.ToTable("EdxlCapMessageViewModel");
                 });
 
             modelBuilder.Entity("edxl_cap_v1_2.Models.DataCategory", b =>
@@ -98,10 +116,10 @@ namespace edxl_cap_v1_2.Migrations
 
             modelBuilder.Entity("edxl_cap_v1_2.Models.Element", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ElementIndex")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AlertId");
+                    b.Property<int?>("AlertIndex");
 
                     b.Property<int?>("AreaIndex");
 
@@ -113,9 +131,9 @@ namespace edxl_cap_v1_2.Migrations
 
                     b.Property<int?>("ResourceIndex");
 
-                    b.HasKey("Id");
+                    b.HasKey("ElementIndex");
 
-                    b.HasIndex("AlertId");
+                    b.HasIndex("AlertIndex");
 
                     b.HasIndex("AreaIndex");
 
@@ -132,6 +150,9 @@ namespace edxl_cap_v1_2.Migrations
                 {
                     b.Property<int>("InfoIndex")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Alert_Identifier")
+                        .HasMaxLength(150);
 
                     b.Property<string>("Audience");
 
@@ -157,6 +178,8 @@ namespace edxl_cap_v1_2.Migrations
 
                     b.Property<string>("Instruction");
 
+                    b.Property<string>("Language");
+
                     b.Property<DateTime>("Onset");
 
                     b.Property<string>("Parameter");
@@ -171,9 +194,10 @@ namespace edxl_cap_v1_2.Migrations
 
                     b.Property<string>("Web");
 
-                    b.Property<string>("language");
-
                     b.HasKey("InfoIndex");
+
+                    b.HasIndex("Alert_Identifier")
+                        .IsUnique();
 
                     b.ToTable("Info");
                 });
@@ -195,6 +219,9 @@ namespace edxl_cap_v1_2.Migrations
                     b.Property<int>("ResourceIndex")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Alert_Identifier")
+                        .HasMaxLength(150);
+
                     b.Property<int>("DataCategory_Id");
 
                     b.Property<string>("DerefUri");
@@ -212,6 +239,9 @@ namespace edxl_cap_v1_2.Migrations
                     b.Property<string>("Uri");
 
                     b.HasKey("ResourceIndex");
+
+                    b.HasIndex("Alert_Identifier")
+                        .IsUnique();
 
                     b.ToTable("Resource");
                 });
@@ -414,11 +444,25 @@ namespace edxl_cap_v1_2.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
+            modelBuilder.Entity("edxl_cap_v1_2.Models.Alert", b =>
+                {
+                    b.HasOne("edxl_cap_v1_2.Models.ContentViewModels.EdxlCapMessageViewModel")
+                        .WithOne("Alert")
+                        .HasForeignKey("edxl_cap_v1_2.Models.Alert", "Alert_Identifier");
+                });
+
+            modelBuilder.Entity("edxl_cap_v1_2.Models.Area", b =>
+                {
+                    b.HasOne("edxl_cap_v1_2.Models.ContentViewModels.EdxlCapMessageViewModel")
+                        .WithOne("Area")
+                        .HasForeignKey("edxl_cap_v1_2.Models.Area", "Alert_Identifier");
+                });
+
             modelBuilder.Entity("edxl_cap_v1_2.Models.Element", b =>
                 {
                     b.HasOne("edxl_cap_v1_2.Models.Alert")
                         .WithMany("Elements")
-                        .HasForeignKey("AlertId");
+                        .HasForeignKey("AlertIndex");
 
                     b.HasOne("edxl_cap_v1_2.Models.Area")
                         .WithMany("Elements")
@@ -435,6 +479,20 @@ namespace edxl_cap_v1_2.Migrations
                     b.HasOne("edxl_cap_v1_2.Models.Resource")
                         .WithMany("Elements")
                         .HasForeignKey("ResourceIndex");
+                });
+
+            modelBuilder.Entity("edxl_cap_v1_2.Models.Info", b =>
+                {
+                    b.HasOne("edxl_cap_v1_2.Models.ContentViewModels.EdxlCapMessageViewModel")
+                        .WithOne("Info")
+                        .HasForeignKey("edxl_cap_v1_2.Models.Info", "Alert_Identifier");
+                });
+
+            modelBuilder.Entity("edxl_cap_v1_2.Models.Resource", b =>
+                {
+                    b.HasOne("edxl_cap_v1_2.Models.ContentViewModels.EdxlCapMessageViewModel")
+                        .WithOne("Resource")
+                        .HasForeignKey("edxl_cap_v1_2.Models.Resource", "Alert_Identifier");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
