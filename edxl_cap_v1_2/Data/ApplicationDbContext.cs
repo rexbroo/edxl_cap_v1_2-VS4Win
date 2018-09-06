@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using edxl_cap_v1_2.Models;
-using edxl_cap_v1_2.Models.ContentViewModels;
 using Microsoft.AspNetCore.Identity;
-using edxl_cap_v1_2.Models.ContentViewModels;
 
 namespace edxl_cap_v1_2.Data
 {
@@ -18,6 +12,8 @@ namespace edxl_cap_v1_2.Data
         {
             this.Database.EnsureCreated();
         }
+
+        public DbSet<EdxlCapMsg> EdxlCapMsg { get; set; }
 
         public virtual DbSet<Person> Persons { get; set; }
 
@@ -39,6 +35,7 @@ namespace edxl_cap_v1_2.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+            modelBuilder.Entity<EdxlCapMsg>().ToTable("EdxlCapMsg");
             modelBuilder.Entity<Person>().ToTable("Person");
             modelBuilder.Entity<Alert>().ToTable("Alert");
             modelBuilder.Entity<Area>().ToTable("Area");
@@ -59,6 +56,5 @@ namespace edxl_cap_v1_2.Data
             modelBuilder.Entity<IdentityUserToken<string>>(entity => entity.Property(m => m.Name).HasMaxLength(200));
         }
 
-        public DbSet<edxl_cap_v1_2.Models.ContentViewModels.EdxlCapMessageViewModel> EdxlCapMessageViewModel { get; set; }
     }
 }

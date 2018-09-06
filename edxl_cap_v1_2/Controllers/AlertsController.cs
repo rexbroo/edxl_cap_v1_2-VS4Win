@@ -25,6 +25,12 @@ namespace edxl_cap_v1_2.Controllers
             return View(await _context.Alert.ToListAsync());
         }
 
+        // GET: Alerts
+        public IActionResult AlertSelect()
+        {
+            return View();
+        }
+
         // GET: Alerts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -67,7 +73,7 @@ namespace edxl_cap_v1_2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Identifier,Sender,Sent,Status,MsgType,Source,Scope,Restriction,Addresses,Code,Note,References,Incidents,Language,DataCategory_Id")] Alert alert)
+            [Bind("AlertIndex,Alert_Identifier,Sender,Sent,Status,MsgType,Source,Scope,Restriction,Addresses,Code,Note,References,Incidents,Language,DataCategory_Id")] Alert alert)
         {
             try
             {
