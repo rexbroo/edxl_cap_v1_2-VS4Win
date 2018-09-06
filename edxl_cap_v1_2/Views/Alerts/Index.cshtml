@@ -1,6 +1,6 @@
-﻿@model IEnumerable<edxl_cap_v1_2.Models.Alert>
-@using edxl_cap_v1_2.Models
-
+﻿@model IEnumerable<edxl_cap_v1_2.Models.ContentViewModels.Alert>
+@using edxl_cap_v1_2.Models.ContentViewModels
+     
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_CapCategoryLayout.cshtml";
@@ -11,8 +11,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
+
 <body>
-    <h3>Alert</h3>
+    <h4>Alert</h4>
+    <div> 
+        @ViewBag.Message
+    </div>
 
     <style>
         tr:nth-child(even) {
@@ -28,6 +32,8 @@
 
         @foreach (var item in Model)
         {
+            @*@while(item.AlertIndex == item.SelectedAlertIndex)
+            {*@
             <tr>
                 <td>
                     <input type="checkbox" name="start">start
@@ -790,12 +796,14 @@
                 </td>
             </tr>
 
+        @*}*@
+
         }
 
     </table>
 
 </body>
 
-    <p style="font-size:x-small;padding:2px;text-align:center;color:#ffffff"> * = required &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat button is for multiple-use elements. </p>
+<p style="font-size:x-small;padding:2px;text-align:center;color:#ffffff"> * = required &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat button is for multiple-use elements. </p>
 
 </html>
