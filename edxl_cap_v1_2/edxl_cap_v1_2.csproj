@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeFrameworkVersion>2.1.5</RuntimeFrameworkVersion>
     <UserSecretsId>aspnet-edxl_cap_v1_2-A2A54C28-3A39-4B96-8C1D-032B19CE2A9C</UserSecretsId>
     <PreserveCompilationContext>true</PreserveCompilationContext>
 
@@ -27,6 +27,12 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="_Assemble.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
