@@ -21,6 +21,8 @@ namespace edxl_cap_v1_2.Data
 
         public DbSet<EdxlCapMsg> EdxlCapMsg { get; set; }
 
+        public DbSet<EdxlCapMessage> EdxlCapMessage { get; set; }
+
         public DbSet<EdxlCapMessageViewModel> EdxlCapMessageViewModel { get; set; }
 
         public DbSet<AlertViewModel> AlertViewModel { get; set; }
